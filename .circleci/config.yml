@@ -9,7 +9,7 @@ jobs:
           key: dependency-cache-{{ checksum "yarn.lock" }}
       - run: yarn install
       - run: cd client && yarn install
-      - run: yarn start
+      - run: cd client && yarn start
       - save_cache:
           key: dependency-cache-{{ checksum "yarn.lock" }}
           paths:
