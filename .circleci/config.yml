@@ -21,11 +21,12 @@ jobs:
       - checkout
       - restore_cache:
           key: dependency-cache-{{ checksum "yarn.lock" }}
-      - run: cypress run
+      - run: yarn install
       - save_cache:
-          key: dependency-cache-{{ checksum "yarn.lock" }}
+          key: v1-deps-{{ .Branch }}-{{ checksum "package.json" }}
           paths:
-            - node_modules
+            - ~/.cache
+      - run: $(yarn bin)/cypress run --record --key <record_key>
 workflows:
     build-and-test:
       jobs:
