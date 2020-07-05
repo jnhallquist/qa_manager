@@ -1,8 +1,13 @@
 version: 2.1
+executors:
+  node:
+    docker:
+      - image: circleci/node:latest
+  cypress:
+    docker:
+      - image: cypress/base:8
 jobs:
   build:
-    docker:
-      image: "circleci/node:latest"
     steps:
       - checkout
       - restore_cache:
@@ -15,8 +20,6 @@ jobs:
           paths:
             - node_modules
   test:
-    docker:
-      image: "cypress/base:8"
     steps:
       - run: cypress run
 workflows:
