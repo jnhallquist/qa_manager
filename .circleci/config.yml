@@ -1,29 +1,31 @@
 version: 2.1
-orbs:
-  node: circleci/node@3.0.1
-  cypress: cypress-io/cypress@1.25.0
 jobs:
-  install-node:
-    docker:
-      - image: 'cimg/base:stable'
-    steps:
-      - checkout
-      - node/install:
-          install-yarn: true
-          node-version: latest
-      - run: node --version
   build:
+    docker:
+      image: circleci/node:latest
     steps:
       - checkout
+      - restore_cache:
+          keys:
+            - "v1-dependencies-{{ checksum \"package.json\" }}"
+            - v1-dependencies-
       - run: yarn install
       - run: cd client && yarn install
-  cypress/run:
-    yarn: true
-    start: ~./client/node_modules/bin/react-scripts start
-    wait-on: 'http://localhost:3000'
+      - run: yarn start
+      - save_cache:
+          key: "v1-dependencies-{{ checksum \"package.json\" }}"
+          paths:
+            - node_modules
+  test:
+    docker:
+      image: cypress/base:8
+        environment:
+          ## this enables colors in the output
+          TERM: xterm
+    steps:
+      - run: cypress run
 workflows:
     build-and-test:
       jobs:
-        - install-node
         - build
-        - cypress/run
+        - test
