@@ -14,18 +14,19 @@ jobs:
           key: dependency-cache-{{ checksum "yarn.lock" }}
           paths:
             - node_modules
+            - ~/.cache
   test:
     docker:
       - image: cypress/base:8
     steps:
       - checkout
-      - restore_cache:
-          key: dependency-cache-{{ checksum "yarn.lock" }}
-      - run: yarn install
-      - save_cache:
-          key: v1-deps-{{ .Branch }}-{{ checksum "package.json" }}
-          paths:
-            - ~/.cache
+      # - restore_cache:
+      #     key: dependency-cache-{{ checksum "yarn.lock" }}
+      # - run: yarn install
+      # - save_cache:
+      #     key: v1-deps-{{ .Branch }}-{{ checksum "package.json" }}
+      #     paths:
+      #       - ~/.cache
       - run: $(yarn bin)/cypress run --record --key <record_key>
 workflows:
     build-and-test:
