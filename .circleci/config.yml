@@ -1,0 +1,29 @@
+version: 2.1
+orbs:
+  node: circleci/node@3.0.1
+  cypress: cypress-io/cypress@1.25.0
+jobs:
+  install-node:
+    docker:
+      - image: 'cimg/base:stable'
+    steps:
+      - checkout
+      - node/install:
+          install-yarn: true
+          node-version: latest
+      - run: node --version
+  build:
+    steps:
+      - checkout
+      - run: yarn install
+      - run: cd client && yarn install
+  cypress/run:
+    yarn: true
+    start: ~/client/node_modules/bin/react-scripts start
+    wait-on: 'http://localhost:3000'
+workflows:
+    build-and-test:
+      jobs:
+        - install-node
+        - build
+        - cypress/run
