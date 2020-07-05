@@ -98,7 +98,7 @@ class TestCaseForm extends React.Component {
       <Paper className={classes.paper}>
         <Grid container spacing={3} alignContent="center">
           <Grid item xs={12} className={classes.contentCenter}>
-            <h3>New Test Case</h3>
+            <h3 id="new-test-case-form-header-text">New Test Case</h3>
           </Grid>
           <Grid item xs={12}>
             <TextField id="new-test-case-title" name="title" label="Title" variant="filled" value={this.state.form.title} onChange={this.handleChange} fullWidth />
@@ -135,7 +135,7 @@ class TestCaseForm extends React.Component {
             </Grid>
           </Grid>
           <Grid item xs={12} className={classes.contentRight}>
-            <Button className={classes.button} variant="contained" onClick={this.handleSubmit}>Submit</Button>
+            <Button id="new-test-case-submit-btn" className={classes.button} variant="contained" onClick={this.handleSubmit}>Submit</Button>
           </Grid>
         </Grid>
       </Paper>
