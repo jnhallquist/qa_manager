@@ -42,6 +42,16 @@ const styles = withStyles((theme) => ({
       marginBottom: theme.spacing(6),
       padding: theme.spacing(3),
     },
+  },
+  button: {
+    marginTop: theme.spacing(3),
+    marginLeft: theme.spacing(1)
+  },
+  contentRight: {
+    textAlign: 'right'
+  },
+  contentCenter: {
+    textAlign: 'center'
   }
 }));
 
@@ -95,39 +105,45 @@ class TestCaseForm extends React.Component {
     return (
       <div className={classes.layout}>
       <Paper className={classes.paper}>
-        <Grid container xs={6} alignContent="center">
+        <Grid container spacing={3} alignContent="center">
+          <Grid item xs={12} className={classes.contentCenter}>
+            <h3>New Test Case</h3>
+          </Grid>
           <Grid item xs={12}>
             <TextField id="new-test-case-title" label="Title" variant="filled" value={this.value} onChange={this.handleChange.bind(this)} fullWidth />
           </Grid>
-          <Grid item>
-            <TextField id="new-test-case-preconditions" label="Preconditions" variant="filled" multiline rows={4} value={this.value} onChange={this.handleChange.bind(this)} />
+          <Grid item xs={12}>
+            <TextField id="new-test-case-preconditions" label="Preconditions" variant="filled" multiline rows={4} value={this.value} onChange={this.handleChange.bind(this)} fullWidth />
           </Grid>
-          <Grid item>
-            <TextField id="new-test-case-steps" label="Steps" variant="filled" multiline rows={4} value={this.value} onChange={this.handleChange.bind(this)} />
+          <Grid item xs={12}>
+            <TextField id="new-test-case-steps" label="Steps" variant="filled" multiline rows={4} value={this.value} onChange={this.handleChange.bind(this)} fullWidth />
           </Grid>
-          <Grid item>
-            <TextField id="new-test-case-expected-results" label="Expected Results" variant="filled" multiline rows={4} value={this.value} onChange={this.handleChange.bind(this)} />
+          <Grid item xs={12}>
+            <TextField id="new-test-case-expected-results" label="Expected Results" variant="filled" multiline rows={4} value={this.value} onChange={this.handleChange.bind(this)} fullWidth />
           </Grid>
-          <Grid item>
-            <TextField id="new-test-case-postconditions" label="Postconditions" variant="filled" multiline rows={4} value={this.value} onChange={this.handleChange.bind(this)} />
+          <Grid item xs={12}>
+            <TextField id="new-test-case-postconditions" label="Postconditions" variant="filled" multiline rows={4} value={this.value} onChange={this.handleChange.bind(this)} fullWidth />
           </Grid>
-          <Grid item xs={6}>
-            <TextField
-              id="new-test-case-status"
-              select
-              label="Status"
-              value={this.value}
-              onChange={this.handleChange.bind(this)}
-            >
-              {statuses.map((option) => (
-                <MenuItem key={option.value} value={option.value}>
-                  {option.label}
-                </MenuItem>
-              ))}
-            </TextField>
+          <Grid item xs={12}>
+            <Grid item xs={6}>
+              <TextField
+                id="new-test-case-status"
+                select
+                label="Status"
+                value={this.value}
+                onChange={this.handleChange.bind(this)}
+                fullWidth
+              >
+                {statuses.map((option) => (
+                  <MenuItem key={option.value} value={option.value}>
+                    {option.label}
+                  </MenuItem>
+                ))}
+              </TextField>
+            </Grid>
           </Grid>
-          <Grid item>
-            <Button variant="contained" onClick={this.handleSubmit}>Submit</Button>
+          <Grid item xs={12} className={classes.contentRight}>
+            <Button className={classes.button} variant="contained" onClick={this.handleSubmit}>Submit</Button>
           </Grid>
         </Grid>
       </Paper>
