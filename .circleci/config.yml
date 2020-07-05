@@ -29,7 +29,10 @@ jobs:
       #       - ~/.cache
       - run: $(yarn bin)/cypress run --record --key <record_key>
 workflows:
-    build-and-test:
-      jobs:
-        - build
-        - test
+  version: 2
+  build-and-test:
+    jobs:
+      - build
+      - test:
+          requires:
+            - build
