@@ -6,12 +6,12 @@ jobs:
     steps:
       - checkout
       - restore_cache:
-          key: dependency-cache-{{ checksum "package-lock.json" }}
+          key: dependency-cache-{{ checksum "yarn.lock" }}
       - run: yarn install
       - run: cd client && yarn install
       - run: yarn start
       - save_cache:
-          key: dependency-cache-{{ checksum "package-lock.json" }}
+          key: dependency-cache-{{ checksum "yarn.lock" }}
           paths:
             - node_modules
   test:
@@ -20,10 +20,10 @@ jobs:
     steps:
       - checkout
       - restore_cache:
-          key: dependency-cache-{{ checksum "package-lock.json" }}
+          key: dependency-cache-{{ checksum "yarn.lock" }}
       - run: cypress run
       - save_cache:
-          key: dependency-cache-{{ checksum "package-lock.json" }}
+          key: dependency-cache-{{ checksum "yarn.lock" }}
           paths:
             - node_modules
 workflows:
