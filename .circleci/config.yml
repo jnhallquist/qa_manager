@@ -19,8 +19,6 @@ jobs:
   test:
     docker:
       image: cypress/base:8
-      environment:
-        TERM: xterm
     steps:
       - run: cypress run
 workflows:
