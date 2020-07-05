@@ -64,33 +64,24 @@ class TestCaseForm extends React.Component {
         title: '',
         preconditions: '',
         steps: '',
-        expectedResults: '',
+        expected_results: '',
         postconditions: '',
         status: ''
       }
     };
 
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleChange(event) {
+  handleChange = (event) => {
     const formState = Object.assign({}, this.state.form)
     formState[event.target.name] = event.target.value
     this.setState({form: formState})
   }
 
-  handleSubmit(event) {
+  handleSubmit = (event) => {
     event.preventDefault();
 
-    axios.post('http://localhost:3001/test_cases', {
-      title: this.state.form.title,
-      preconditions: this.state.form.preconditions,
-      steps: this.state.form.steps,
-      expected_results: this.state.form.expectedResults,
-      postconditions: this.state.form.postconditions,
-      status: this.state.form.status
-    })
+    axios.post('http://localhost:3001/test_cases', this.state.form)
     .then(function (response) {
       console.log(response);
     })
@@ -110,28 +101,29 @@ class TestCaseForm extends React.Component {
             <h3>New Test Case</h3>
           </Grid>
           <Grid item xs={12}>
-            <TextField id="new-test-case-title" label="Title" variant="filled" value={this.value} onChange={this.handleChange.bind(this)} fullWidth />
+            <TextField id="new-test-case-title" name="title" label="Title" variant="filled" value={this.state.form.title} onChange={this.handleChange} fullWidth />
           </Grid>
           <Grid item xs={12}>
-            <TextField id="new-test-case-preconditions" label="Preconditions" variant="filled" multiline rows={4} value={this.value} onChange={this.handleChange.bind(this)} fullWidth />
+            <TextField id="new-test-case-preconditions" name="preconditions" label="Preconditions" variant="filled" multiline rows={4} value={this.state.form.preconditions} onChange={this.handleChange} fullWidth />
           </Grid>
           <Grid item xs={12}>
-            <TextField id="new-test-case-steps" label="Steps" variant="filled" multiline rows={4} value={this.value} onChange={this.handleChange.bind(this)} fullWidth />
+            <TextField id="new-test-case-steps" name="steps" label="Steps" variant="filled" multiline rows={4} value={this.state.form.steps} onChange={this.handleChange} fullWidth />
           </Grid>
           <Grid item xs={12}>
-            <TextField id="new-test-case-expected-results" label="Expected Results" variant="filled" multiline rows={4} value={this.value} onChange={this.handleChange.bind(this)} fullWidth />
+            <TextField id="new-test-case-expected-results" name="expected_results" label="Expected Results" variant="filled" multiline rows={4} value={this.state.form.expected_results} onChange={this.handleChange} fullWidth />
           </Grid>
           <Grid item xs={12}>
-            <TextField id="new-test-case-postconditions" label="Postconditions" variant="filled" multiline rows={4} value={this.value} onChange={this.handleChange.bind(this)} fullWidth />
+            <TextField id="new-test-case-postconditions" name="postconditions" label="Postconditions" variant="filled" multiline rows={4} value={this.state.form.postconditions} onChange={this.handleChange} fullWidth />
           </Grid>
           <Grid item xs={12}>
             <Grid item xs={6}>
               <TextField
                 id="new-test-case-status"
+                name="status"
                 select
                 label="Status"
-                value={this.value}
-                onChange={this.handleChange.bind(this)}
+                value={this.state.form.status}
+                onChange={this.handleChange}
                 fullWidth
               >
                 {statuses.map((option) => (
