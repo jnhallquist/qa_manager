@@ -16,4 +16,4 @@ jobs:
           paths:
             - node_modules
             - ~/.cache
-      - run: $(yarn bin)/cypress run --record --key <record_key>
+      - run: yarn run cypress
