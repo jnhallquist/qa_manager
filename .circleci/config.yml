@@ -35,11 +35,8 @@ jobs:
     - run:
         name: Start
         command: yarn run serve
-        background: true
+        background: false
         working_directory: ''
-    - run:
-        name: Wait-on http://localhost:3000
-        command: npx wait-on http://localhost:3000
     - run:
         name: Run Cypress tests
         no_output_timeout: 10m
