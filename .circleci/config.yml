@@ -1,5 +1,11 @@
 version: 2
 jobs:
+  build:
+    docker:
+    - image: circleci/node:latest
+    steps:
+    - run:
+        name: Install
   cypress/run:
     docker:
     - image: cypress/base:10
@@ -21,8 +27,7 @@ jobs:
         command: "if [[ ! -z \"\" ]]; then\n  echo \"Installing using custom command\"\n  echo \"\"\n  \nelif [ \"true\" = \"true\" ]; then\n  echo \"Installing using Yarn\"\n  yarn install --frozen-lockfile\nelif [ ! -e ./package-lock.json ]; then\n  echo \"The Cypress orb uses 'npm ci' to install 'node_modules', which requires a 'package-lock.json'.\"\n  echo \"A 'package-lock.json' file was not found. Please run 'npm install' in your project,\"\n  echo \"and commit 'package-lock.json' to your repo.\"\n  exit 1\nelse\n  echo \"Installing dependencies using NPM ci\"\n  npm ci\nfi\n"
     - run:
         name: Verify Cypress
-        command: npx cypress verify
-        working_directory: ''
+        command: yarn cypress verify
     - save_cache:
         key: cache-{{ arch }}-{{ .Branch }}-{{ checksum "package.json" }}
         paths:
@@ -33,18 +38,9 @@ jobs:
         - project
         - .cache/Cypress
     - run:
-        name: Start
-        command: yarn run serve
-        background: false
-        working_directory: ''
-    - run:
-        name: Wait-on http://localhost:3000
-        command: npx wait-on http-get:http://localhost:3000
-    - run:
         name: Run Cypress tests
         no_output_timeout: 10m
-        command: "npx cypress run \\\n   \\\n   \\\n   \\\n   \\\n  "
-        working_directory: ''
+        command: cd ~/client && yarn test-ci
 workflows:
   build:
     jobs:
