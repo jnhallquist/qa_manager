@@ -1,42 +1,14 @@
-version: 2
-jobs:
-  build:
-    working_directory: ~/qa_manager/client
-    docker:
-    - image: circleci/node:latest
-
-    steps:
-    - run:
-        name: Install
-  cypress/run:
-    working_directory: ~/qa_manager/client
-    docker:
-    - image: cypress/base:10
-    parallelism: 1
-    steps:
-    - checkout:
-        path: ~/qa_manager
-    - restore_cache:
-        keys:
-          - v1-deps-{{ .Branch }}-{{ checksum "package.json" }}
-          - v1-deps-{{ .Branch }}
-          - v1-deps
-    - run:
-        name: Install
-        command: yarn install --frozen-lockfile
-    - save_cache:
-        key: v1-deps-{{ .Branch }}-{{ checksum "package.json" }}
-        paths:
-          - .cache
-    - run:
-        name: Verify Cypress
-        command: yarn cypress verify
-    - run:
-        name: Run Tests
-        no_output_timeout: 10m
-        command: yarn test
+version: 2.1
+orbs:
+  cypress: cypress-io/cypress@1.25.0
 workflows:
   build:
     jobs:
-    - cypress/run
-  version: 2
+    - cypress/run:
+       yarn: true
+       start: yarn start
+       wait-on: 'http://localhost:3000'
+       cache-key: >-
+            cache-{{ arch }}-{{ .Branch }}-{{ checksum "client/package.json"
+            }}
+       working_directory: ~/qa_manager/client
