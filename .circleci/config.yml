@@ -17,5 +17,4 @@ jobs:
           paths:
             - ~/.cache
             - ~/.yarn
-      - run: cypress/run
-          executor: cypress/base-8
+      - cypress/run
