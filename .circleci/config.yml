@@ -1,16 +1,16 @@
 version: 2
 jobs:
   build:
+    working_directory: ~/qa_manager
     docker:
     - image: circleci/node:latest
-    - working_directory: ~/qa_manager
+
     steps:
     - run:
         name: Install
   cypress/run:
     docker:
     - image: cypress/base:10
-    - working_directory: ~/qa_manager
     parallelism: 1
     steps:
     - checkout:
