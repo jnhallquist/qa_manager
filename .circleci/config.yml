@@ -27,4 +27,4 @@ workflows:
       - build
       - cypress/run:
           requires:
-             build
+            - build
