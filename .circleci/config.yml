@@ -12,8 +12,8 @@ jobs:
     parallelism: 1
     environment:
     - CYPRESS_CACHE_FOLDER: ~/project/client/.cache/Cypress
-    steps:
     - working_directory: ~/project/client
+    steps:
     - run:
         command: echo "Assuming dependencies were installed using cypress/install job"
     - attach_workspace:
