@@ -8,5 +8,8 @@
   "devDependencies": {
     "cypress": "^4.9.0",
     "prettier": "2.0.5"
+  },
+  "scripts": {
+    "serve": "cd client && yarn start"
   }
 }
