@@ -1,7 +1,7 @@
 version: 2
 jobs:
   build:
-    working_directory: ~/qa_manager
+    working_directory: ~/qa_manager/client
     docker:
     - image: circleci/node:latest
 
