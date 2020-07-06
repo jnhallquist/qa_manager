@@ -1,7 +1,6 @@
 version: 2
 jobs:
   build:
-    working_directory: ~/qa_manager/client
     docker:
     - image: circleci/node:latest
 
@@ -27,6 +26,7 @@ jobs:
         command: yarn test-ci
 workflows:
   build:
+    working_directory: ~/qa_manager/client
     jobs:
     - cypress/run
   version: 2
