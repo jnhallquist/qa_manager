@@ -1,8 +1,9 @@
 version: 2.1
 jobs:
-  build:
+  build-and-test:
     docker:
       - image: circleci/node:latest
+      - image: cypress/base:8
     steps:
       - checkout
       - restore_cache:
@@ -15,24 +16,25 @@ jobs:
           paths:
             - node_modules
             - ~/.cache
-  test:
-    docker:
-      - image: cypress/base:8
-    steps:
-      - checkout
-      # - restore_cache:
-      #     key: dependency-cache-{{ checksum "yarn.lock" }}
-      # - run: yarn install
-      # - save_cache:
-      #     key: v1-deps-{{ .Branch }}-{{ checksum "package.json" }}
-      #     paths:
-      #       - ~/.cache
       - run: $(yarn bin)/cypress run --record --key <record_key>
-workflows:
-  version: 2
-  build-and-test:
-    jobs:
-      - build
-      - test:
-          requires:
-            - build
+#   test:
+#     docker:
+#       - image: cypress/base:8
+#     steps:
+#       - checkout
+#       # - restore_cache:
+#       #     key: dependency-cache-{{ checksum "yarn.lock" }}
+#       # - run: yarn install
+#       # - save_cache:
+#       #     key: v1-deps-{{ .Branch }}-{{ checksum "package.json" }}
+#       #     paths:
+#       #       - ~/.cache
+#       - run: $(yarn bin)/cypress run --record --key <record_key>
+# workflows:
+#   version: 2
+#   build-and-test:
+#     jobs:
+#       - build
+#       - test:
+#           requires:
+#             - build
