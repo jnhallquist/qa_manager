@@ -1,30 +1,9 @@
 version: 2.1
 orbs:
   cypress: cypress-io/cypress@1
-jobs:
-  - build:
-      docker:
-        image: circleci/node:latest
-      steps:
-        - checkout
-        - restore_cache:
-            key: dependency-cache-{{ checksum "yarn.lock" }}
-        - run: yarn install
-        - run: cd client && yarn install
-        - save_cache:
-            key: dependency-cache-{{ checksum "yarn.lock" }}
-            paths:
-              - ~/.cache
-              - ~/.yarn
-  cypress/run:
-    executor: cypress/base:<< parameters.node >>
-    working_directory: client
-    start: yarn start
-    wait-on: 'http://localhost:3000'
 workflows:
-  build-and-test:
+  build:
     jobs:
-      - build
       - cypress/run:
-          requires:
-            - build
+          start:  cd client && yarn start
+          wait-on: 'http://localhost:3000'
