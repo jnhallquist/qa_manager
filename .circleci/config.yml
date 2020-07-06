@@ -14,7 +14,6 @@ jobs:
       - save_cache:
           key: dependency-cache-{{ checksum "yarn.lock" }}
           paths:
-            - node_modules
-            - ~/.yarn
             - ~/.cache
-      - run: cd .. && yarn run cypress run
+            - ~/.yarn
+      - run: yarn run cypress run
