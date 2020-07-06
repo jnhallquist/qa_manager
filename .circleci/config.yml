@@ -2,9 +2,9 @@ version: 2.1
 orbs:
   cypress: cypress-io/cypress@1
 jobs:
-  build:
+  - build:
       docker:
-        - image: circleci/node:latest
+        image: circleci/node:latest
       steps:
         - checkout
         - restore_cache:
