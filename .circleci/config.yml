@@ -11,10 +11,12 @@ jobs:
           key: dependency-cache-{{ checksum "yarn.lock" }}
       - run: yarn install
       - run: cd client && yarn install
-      - run: cd client && yarn start
       - save_cache:
           key: dependency-cache-{{ checksum "yarn.lock" }}
           paths:
             - ~/.cache
             - ~/.yarn
-      - cypress/run
+  cypress/run:
+    working_directory: client
+    start: yarn start
+    wait-on: 'http://localhost:3000'
