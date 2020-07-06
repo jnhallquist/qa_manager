@@ -17,4 +17,4 @@ jobs:
             - node_modules
             - ~/.yarn
             - ~/.cache
-      - run: yarn run cypress run
+      - run: cypress install && yarn run cypress run
