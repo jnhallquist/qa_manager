@@ -17,6 +17,7 @@ jobs:
             - ~/.cache
             - ~/.yarn
   cypress/run:
+    executor: cypress/base:<< parameters.node >>
     working_directory: client
     start: yarn start
     wait-on: 'http://localhost:3000'
