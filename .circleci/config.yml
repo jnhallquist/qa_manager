@@ -3,6 +3,7 @@ orbs:
   cypress: cypress-io/cypress@1.25.0
 workflows:
   build:
+   working_directory: ~/qa_manager/client
     jobs:
     - cypress/run:
        yarn: true
