@@ -18,12 +18,13 @@ jobs:
     - attach_workspace:
         at: ~/
     - checkout
+    - run:
+        command: cd client
     - restore_cache:
         keys:
         - cache-{{ arch }}-{{ .Branch }}-{{ checksum "package.json" }}
     - run:
         name: Install
-        working_directory: ''
         command: "if [[ ! -z \"\" ]]; then\n  echo \"Installing using custom command\"\n  echo \"\"\n  \nelif [ \"true\" = \"true\" ]; then\n  echo \"Installing using Yarn\"\n  yarn install --frozen-lockfile\nelif [ ! -e ./package-lock.json ]; then\n  echo \"The Cypress orb uses 'npm ci' to install 'node_modules', which requires a 'package-lock.json'.\"\n  echo \"A 'package-lock.json' file was not found. Please run 'npm install' in your project,\"\n  echo \"and commit 'package-lock.json' to your repo.\"\n  exit 1\nelse\n  echo \"Installing dependencies using NPM ci\"\n  npm ci\nfi\n"
     - run:
         name: Verify Cypress
@@ -40,7 +41,7 @@ jobs:
     - run:
         name: Run Cypress tests
         no_output_timeout: 10m
-        command: cd ~/client && yarn test-ci
+        command: yarn test-ci
 workflows:
   build:
     jobs:
