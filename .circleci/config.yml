@@ -12,4 +12,3 @@ workflows:
             cache-{{ arch }}-{{ .Branch }}-{{ checksum "client/package.json"
             }}
        working_directory: client
-       command: yarn ci:cypress:run
