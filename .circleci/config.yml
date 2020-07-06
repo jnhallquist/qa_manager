@@ -6,6 +6,5 @@ workflows:
     jobs:
       - cypress/run:
           yarn: true
-          install-command: cd client && yarn install --frozen-lockfil
           start:  yarn run serve
           wait-on: 'http://localhost:3000'

@@ -10,6 +10,6 @@
     "prettier": "2.0.5"
   },
   "scripts": {
-    "serve": "cd client && yarn start"
+    "serve": "cd client && yarn install && yarn start"
   }
 }
