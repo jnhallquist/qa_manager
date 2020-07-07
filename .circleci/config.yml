@@ -6,7 +6,7 @@ jobs:
         environment:
           ## this enables colors in the output
           TERM: xterm
-    working_directory: ~/client
+    working_directory: client
     steps:
       - checkout
       - restore_cache:
