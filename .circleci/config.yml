@@ -3,10 +3,10 @@ orbs:
   cypress: cypress-io/cypress@1.25.0
 workflows:
   build:
+    environment:
+      NODE_ENV: development
     jobs:
     - cypress/run:
-        environment:
-          NODE_ENV: development
         yarn: true
         start: yarn start
         wait-on: http-get://localhost:3000
