@@ -12,11 +12,15 @@
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.1"
   },
+  "devDependencies": {
+    "cypress": "^4.9.0",
+    "prettier": "2.0.5",
+    "start-server-and-test": "^1.11.0"
+  },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "start-server": "react-scripts start",
+    "test": "yarn run cypress run",
+    "ci": "start-server-and-test 'yarn start-server' http-get://localhost:3000 'yarn test'"
   },
   "eslintConfig": {
     "extends": "react-app"
