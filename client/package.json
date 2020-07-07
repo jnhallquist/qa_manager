@@ -19,11 +19,10 @@
   },
   "scripts": {
     "start": "NODE_ENVIRONMENT=development react-scripts start",
-    "start:ci": "CI=true react-scripts start",
     "build": "react-scripts build",
     "cypress:run": "start-server-and-test start http://localhost:3000 cypress run",
     "ci:cypress": "cypress run --record --key=${CYPRESS_RECORD_KEY}",
-    "ci:cypress:run": "start-server-and-test start:ci http://localhost:3000 ci:cypress:run",
+    "ci:cypress:run": "start-server-and-test start http://localhost:3000 ci:cypress:run",
     "test:unit": "CI=true react-scripts test --env=jsdom",
     "test": "yarn test:unit && yarn cypress:run",
     "eject": "react-scripts eject"

@@ -6,7 +6,7 @@ workflows:
     jobs:
     - cypress/run:
        yarn: true
-       start: yarn start:ci
+       start: yarn start
        wait-on: 'http://127.0.0.1:3000'
        cache-key: >-
             cache-{{ arch }}-{{ .Branch }}-{{ checksum "client/package.json"
