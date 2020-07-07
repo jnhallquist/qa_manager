@@ -18,14 +18,8 @@
     "start-server-and-test": "^1.11.0"
   },
   "scripts": {
-    "start": "NODE_ENVIRONMENT=development react-scripts start",
-    "build": "react-scripts build",
-    "cypress:run": "start-server-and-test start http://localhost:3000 cypress run",
-    "ci:cypress": "cypress run --record --key=${CYPRESS_RECORD_KEY}",
-    "ci:cypress:run": "start-server-and-test 'yarn start' http://localhost:3000 ci:cypress:run",
-    "test:unit": "CI=true react-scripts test --env=jsdom",
-    "test": "yarn test:unit && yarn cypress:run",
-    "eject": "react-scripts eject"
+    "start": "PORT=3000 NODE_ENVIRONMENT=development react-scripts start",
+    "cy:run": "cypress run"
   },
   "eslintConfig": {
     "extends": "react-app"
