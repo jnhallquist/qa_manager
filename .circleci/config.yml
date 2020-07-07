@@ -1,12 +1,17 @@
 version: 2.1
 orbs:
   cypress: cypress-io/cypress@1.25.0
-workflows:
-  build:
+executors:
+  base10:
+    docker:
+      - image: 'cypress/base:10'
     environment:
       NODE_ENV: development
+workflows:
+  build:
     jobs:
     - cypress/run:
+        executor: base10
         yarn: true
         start: yarn start
         wait-on: http-get://localhost:3000
