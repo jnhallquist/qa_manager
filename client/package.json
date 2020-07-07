@@ -18,8 +18,8 @@
     "start-server-and-test": "^1.11.0"
   },
   "scripts": {
-    "start-server": "yarn start",
-    "test": "./node_modules/.bin/cypress run --record",
+    "start-server": "react-scripts start",
+    "test": "yarn run cypress run",
     "ci": "start-server-and-test 'yarn start-server' http-get://localhost:3000 'yarn test'"
   },
   "eslintConfig": {

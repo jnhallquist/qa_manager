@@ -17,4 +17,5 @@ install:
   - cd client
   - yarn install
 script:
+  - cd client
   - yarn run ci
