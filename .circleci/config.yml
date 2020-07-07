@@ -14,6 +14,7 @@ workflows:
         executor: base10
         yarn: true
         start: yarn start
+        background: false
         wait-on: http-get://localhost:3000
         cache-key: >-
             cache-{{ arch }}-{{ .Branch }}-{{ checksum "client/package.json"
