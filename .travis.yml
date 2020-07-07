@@ -16,4 +16,5 @@ cache:
 install:
   - npm ci
 script:
+  - cd client
   - $(npm bin)/cypress run --record
