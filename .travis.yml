@@ -15,6 +15,6 @@ cache:
     - ~/.cache
 install:
   - cd client
-  - npm ci
+  - yarn
 script:
-  - $(npm bin)/cypress run --record
+  - $(yarn bin)/cypress run --record
