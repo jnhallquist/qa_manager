@@ -1,22 +1,24 @@
-version: 2.1
-orbs:
-  cypress: cypress-io/cypress@1.25.0
-executors:
-  base10:
-    docker:
-      - image: 'cypress/base:10'
-    environment:
-      NODE_ENV: development
-workflows:
+version: 2
+jobs:
   build:
-    jobs:
-    - cypress/run:
-        executor: base10
-        yarn: true
-        start: yarn start
-        background: false
-        wait-on: http-get://localhost:3000
-        cache-key: >-
-            cache-{{ arch }}-{{ .Branch }}-{{ checksum "client/package.json"
-            }}
-        working_directory: client
+    docker:
+      - image: cypress/base:8
+        environment:
+          ## this enables colors in the output
+          TERM: xterm
+    working_directory: ~/client
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - v1-deps-{{ .Branch }}-{{ checksum "package.json" }}
+            - v1-deps-{{ .Branch }}
+            - v1-deps
+      - run:
+          name: Install Dependencies
+          command: yarn install --frozen-lockfile
+      - save_cache:
+          key: v1-deps-{{ .Branch }}-{{ checksum "package.json" }}
+          paths:
+            - ~/.cache  ## cache both yarn and Cypress!
+      - run: $(yarn bin)/cypress run --record --key <record_key>
