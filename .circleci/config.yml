@@ -3,14 +3,14 @@ orbs:
   cypress: cypress-io/cypress@1.25.0
 workflows:
   build:
-    environment:
-      NODE_ENV: development
     jobs:
     - cypress/run:
-       yarn: true
-       start: yarn start
-       wait-on: http-get://localhost:3000
-       cache-key: >-
+        environment:
+        NODE_ENV: development
+        yarn: true
+        start: yarn start
+        wait-on: http-get://localhost:3000
+        cache-key: >-
             cache-{{ arch }}-{{ .Branch }}-{{ checksum "client/package.json"
             }}
-       working_directory: client
+        working_directory: client
