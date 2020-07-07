@@ -17,5 +17,4 @@ install:
   - cd client
   - yarn install
 script:
-  - yarn start &
-  - $(yarn bin)/cypress run --record
+  - start-server-and-test
