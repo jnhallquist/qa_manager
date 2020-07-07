@@ -18,8 +18,9 @@
     "start-server-and-test": "^1.11.0"
   },
   "scripts": {
-    "start": "PORT=3000 NODE_ENVIRONMENT=development react-scripts start",
-    "cy:run": "cypress run"
+    "start-server": "yarn start",
+    "test": "./node_modules/.bin/cypress run --record",
+    "ci": "start-server-and-test 'yarn start-server' http-get://localhost:3000 'yarn test'"
   },
   "eslintConfig": {
     "extends": "react-app"
