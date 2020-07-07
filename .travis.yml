@@ -14,7 +14,7 @@ cache:
     # we also need to cache folder with Cypress binary
     - ~/.cache
 install:
+  - cd client
   - npm ci
 script:
-  - cd client
   - $(npm bin)/cypress run --record
