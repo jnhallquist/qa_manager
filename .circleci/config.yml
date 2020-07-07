@@ -3,6 +3,8 @@ orbs:
   cypress: cypress-io/cypress@1.25.0
 workflows:
   build:
+    environment:
+      NODE_ENV: development
     jobs:
     - cypress/run:
        yarn: true
