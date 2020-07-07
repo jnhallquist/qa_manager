@@ -6,7 +6,7 @@ workflows:
     jobs:
     - cypress/run:
         environment:
-        NODE_ENV: development
+          NODE_ENV: development
         yarn: true
         start: yarn start
         wait-on: http-get://localhost:3000
