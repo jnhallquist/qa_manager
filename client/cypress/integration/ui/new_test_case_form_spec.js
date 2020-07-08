@@ -1,6 +1,6 @@
 describe('New Test Case Form Test', () => {
   before(() => {
-    cy.visit('/')
+    cy.visit('/new_test_case')
   })
 
   it('Has header text', () => {
