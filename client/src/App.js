@@ -5,6 +5,13 @@ import './App.css';
 import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles'
 import { purple } from '@material-ui/core/colors'
 
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from 'react-router-dom'
+
 import TestCaseForm from './TestCaseForm'
 
 function App() {
@@ -20,7 +27,15 @@ function App() {
   })
   return (
     <ThemeProvider theme={theme}>
-      <TestCaseForm />
+      <Router>
+        <Link to="/new_test_case">Create Test Case</Link>
+
+        <Switch>
+          <Route path="/new_test_case">
+            <TestCaseForm />
+          </Route>
+        </Switch>
+      </Router>
     </ThemeProvider>
   );
 }
