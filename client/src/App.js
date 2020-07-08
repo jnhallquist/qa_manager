@@ -12,6 +12,8 @@ import {
   Link as RouterLink,
 } from "react-router-dom";
 
+import Link from "@material-ui/core/Link";
+
 import clsx from "clsx";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import Drawer from "@material-ui/core/Drawer";
@@ -21,15 +23,17 @@ import Toolbar from "@material-ui/core/Toolbar";
 import List from "@material-ui/core/List";
 import Typography from "@material-ui/core/Typography";
 import Divider from "@material-ui/core/Divider";
+
 import IconButton from "@material-ui/core/IconButton";
-import MenuIcon from "@material-ui/icons/Menu";
-import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
-import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
-import CreateIcon from '@material-ui/icons/Create';
-import Link from "@material-ui/core/Link";
+
+import MenuIcon from "@material-ui/icons/Menu";
+import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
+import ChevronRightIcon from "@material-ui/icons/ChevronRight";
+import CreateIcon from "@material-ui/icons/Create";
+import HomeIcon from "@material-ui/icons/Home";
 
 import TestCaseForm from "./TestCaseForm";
 
@@ -90,6 +94,9 @@ const useStyles = makeStyles((theme) => ({
     }),
     marginLeft: 0,
   },
+  appBarButtons: {
+    marginLeft: "auto",
+  },
 }));
 
 function App() {
@@ -139,6 +146,11 @@ function App() {
               <Typography variant="h6" noWrap>
                 QA Manager
               </Typography>
+              <div className={classes.appBarButtons}>
+                <IconButton color="inherit" aria-label="go home" edge="start">
+                  <HomeIcon />
+                </IconButton>
+              </div>
             </Toolbar>
           </AppBar>
           <Drawer
