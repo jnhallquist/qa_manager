@@ -1,13 +1,34 @@
 import React from "react";
-import MaterialTable from "material-table";
+import MUIDataTable from "mui-datatables";
 
 import EditIcon from "@material-ui/icons/Edit";
 import DeleteIcon from "@material-ui/icons/Delete";
 
-import ChevronLeft from '@material-ui/icons/ChevronLeft';
-import ChevronRight from '@material-ui/icons/ChevronRight';
+const columns = [
+  {
+    name: "title",
+    label: "Title",
+    options: {
+      filter: false
+    }
+  },
+  {
+    name: "description",
+    label: "Description",
+    options: {
+      filter: false
+    }
+  },
+  {
+    name: "status",
+    label: "Status",
+    options: {
+      filter: true
+    }
+  }
+]
 
-const test_cases = [
+const data = [
   {
     id: 0,
     title: "Verify user can login",
@@ -40,6 +61,12 @@ const test_cases = [
   },
 ];
 
+const options = {
+  download: false,
+  print: false,
+  viewColumns: false
+}
+
 class TestCases extends React.Component {
   constructor() {
     super();
@@ -47,30 +74,11 @@ class TestCases extends React.Component {
 
   render() {
     return (
-      <MaterialTable
-        title="All Test Cases"
-        columns={[
-          { title: "Title", field: "title" },
-          { title: "Description", field: "description" },
-          { title: "Status", field: "status" },
-        ]}
-        data={test_cases}
-        actions={[
-          {
-            icon: () => <EditIcon />,
-            tooltip: "Edit Test Case",
-            onClick: (event, rowData) => alert("You saved " + rowData.name),
-          },
-          {
-            icon: () => <DeleteIcon />,
-            tooltip: "Delete Test Case",
-            onClick: (event, rowData) =>
-              alert("You want to delete " + rowData.name),
-          },
-        ]}
-        options={{
-          search: false,
-        }}
+      <MUIDataTable
+        title={"All Test Cases"}
+        data={data}
+        columns={columns}
+        options={options}
       />
     );
   }
