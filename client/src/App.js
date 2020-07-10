@@ -33,9 +33,11 @@ import MenuIcon from "@material-ui/icons/Menu";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 import CreateIcon from "@material-ui/icons/Create";
+import ListIcon from '@material-ui/icons/List';
 import HomeIcon from "@material-ui/icons/Home";
 
 import TestCaseForm from "./TestCaseForm";
+import TestCases from "./TestCases";
 
 const drawerWidth = 240;
 
@@ -185,6 +187,18 @@ function App() {
                   <ListItemText primary="Create Test Case" />
                 </ListItem>
               </Link>
+              <Link
+                component={RouterLink}
+                to="/test_cases"
+                underline={"none"}
+              >
+                <ListItem button>
+                  <ListItemIcon>
+                    <ListIcon />
+                  </ListItemIcon>
+                  <ListItemText primary="View Test Cases" />
+                </ListItem>
+              </Link>
             </List>
           </Drawer>
           <main
@@ -196,6 +210,9 @@ function App() {
             <Switch>
               <Route path="/new_test_case">
                 <TestCaseForm />
+              </Route>
+              <Route path="/test_cases">
+                <TestCases />
               </Route>
             </Switch>
           </main>

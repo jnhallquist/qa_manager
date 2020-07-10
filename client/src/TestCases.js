@@ -1,29 +1,42 @@
 import React from "react";
+import MaterialTable from "material-table";
+
+import EditIcon from "@material-ui/icons/Edit";
+import DeleteIcon from "@material-ui/icons/Delete";
+
+import ChevronLeft from '@material-ui/icons/ChevronLeft';
+import ChevronRight from '@material-ui/icons/ChevronRight';
 
 const test_cases = [
   {
     id: 0,
-    title: "First",
+    title: "Verify user can login",
+    description: "dankdandna",
     preconditions: "",
     steps: "",
     expected_results: "",
     postconditions: "",
+    status: "Untested",
   },
   {
     id: 1,
-    title: "Second",
+    title: "Verify user can reset password",
+    description: "dajiejeiifw",
     preconditions: "",
     steps: "",
     expected_results: "",
     postconditions: "",
+    status: "Blocked",
   },
   {
     id: 2,
-    title: "Third",
+    title: "Verify user can create new account",
+    description: "dajiojiaidjai",
     preconditions: "",
     steps: "",
     expected_results: "",
     postconditions: "",
+    status: "Pass",
   },
 ];
 
@@ -35,39 +48,29 @@ class TestCases extends React.Component {
   render() {
     return (
       <MaterialTable
-        title="Multiple Actions Preview"
+        title="All Test Cases"
         columns={[
-          { title: "Name", field: "name" },
-          { title: "Surname", field: "surname" },
-          { title: "Birth Year", field: "birthYear", type: "numeric" },
-          {
-            title: "Birth Place",
-            field: "birthCity",
-            lookup: { 34: "İstanbul", 63: "Şanlıurfa" },
-          },
+          { title: "Title", field: "title" },
+          { title: "Description", field: "description" },
+          { title: "Status", field: "status" },
         ]}
-        data={[
-          { name: "Mehmet", surname: "Baran", birthYear: 1987, birthCity: 63 },
-          {
-            name: "Zerya Betül",
-            surname: "Baran",
-            birthYear: 2017,
-            birthCity: 34,
-          },
-        ]}
+        data={test_cases}
         actions={[
           {
-            icon: "save",
-            tooltip: "Save User",
+            icon: () => <EditIcon />,
+            tooltip: "Edit Test Case",
             onClick: (event, rowData) => alert("You saved " + rowData.name),
           },
           {
-            icon: "delete",
-            tooltip: "Delete User",
+            icon: () => <DeleteIcon />,
+            tooltip: "Delete Test Case",
             onClick: (event, rowData) =>
-              confirm("You want to delete " + rowData.name),
+              alert("You want to delete " + rowData.name),
           },
         ]}
+        options={{
+          search: false,
+        }}
       />
     );
   }
