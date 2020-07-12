@@ -1,6 +1,8 @@
 import React from "react";
 import MUIDataTable from "mui-datatables";
 
+import axios from "axios";
+
 import EditIcon from "@material-ui/icons/Edit";
 import DeleteIcon from "@material-ui/icons/Delete";
 
@@ -70,13 +72,25 @@ const options = {
 class TestCases extends React.Component {
   constructor() {
     super();
+
+    this.state = {
+      test_cases: []
+    }
+  }
+
+  componentDidMount() {
+    axios.get("http://localhost:3001/test_cases").then((response) => {
+      const test_cases = response.data;
+      this.setState({ test_cases })
+    });
   }
 
   render() {
+    console.log(123, this.state)
     return (
       <MUIDataTable
         title={"All Test Cases"}
-        data={data}
+        data={this.state.test_cases}
         columns={columns}
         options={options}
       />
