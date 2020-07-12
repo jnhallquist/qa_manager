@@ -126,9 +126,10 @@ class TestCaseForm extends React.Component {
                 label="Description"
                 variant="filled"
                 multiline
-                rows={4}
+                rows={2}
                 value={this.state.form.description}
                 onChange={this.handleChange}
+                shrink={false}
                 fullWidth
               />
             </Grid>
@@ -152,7 +153,7 @@ class TestCaseForm extends React.Component {
                 label="Steps"
                 variant="filled"
                 multiline
-                rows={4}
+                rows={6}
                 value={this.state.form.steps}
                 onChange={this.handleChange}
                 fullWidth
