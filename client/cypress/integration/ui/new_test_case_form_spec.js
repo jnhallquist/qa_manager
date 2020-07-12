@@ -1,41 +1,45 @@
-describe('New Test Case Form Test', () => {
+describe("New Test Case Form Test", () => {
   before(() => {
-    cy.visit('/new_test_case')
-  })
+    cy.visit("/new_test_case");
+  });
 
-  it('Has header text', () => {
-    cy.get('#new-test-case-form-header-text').contains('New Test Case')
-  })
+  it("Has header text", () => {
+    cy.get("#new-test-case-form-header-text").contains("New Test Case");
+  });
 
-  it('Has a Title form field', () => {
-    cy.get('#new-test-case-title')
-  })
+  it("Has a Title form field", () => {
+    cy.get("#new-test-case-title");
+  });
 
-  it('Has a Preconditions form field', () => {
-    cy.get('#new-test-case-preconditions')
-  })
+  it("Has a Description form field", () => {
+    cy.get("#new-test-case-description");
+  });
 
-  it('Has a Steps form field', () => {
-    cy.get('#new-test-case-steps')
-  })
+  it("Has a Preconditions form field", () => {
+    cy.get("#new-test-case-preconditions");
+  });
 
-  it('Has a Expected Results form field', () => {
-    cy.get('#new-test-case-expected-results')
-  })
+  it("Has a Steps form field", () => {
+    cy.get("#new-test-case-steps");
+  });
 
-  it('Has a Postconditions form field', () => {
-    cy.get('#new-test-case-postconditions')
-  })
+  it("Has a Expected Results form field", () => {
+    cy.get("#new-test-case-expected-results");
+  });
 
-  it('Has a Status form field', () => {
-    cy.get('#new-test-case-status').click()
-    cy.contains('Untested')
-    cy.contains('Passed')
-    cy.contains('Failed')
-    cy.contains('Blocked')
-  })
+  it("Has a Postconditions form field", () => {
+    cy.get("#new-test-case-postconditions");
+  });
 
-  it('Has a Submit button', () => {
-    cy.get('#new-test-case-submit-btn')
-  })
-})
+  it("Has a Status form field", () => {
+    cy.get("#new-test-case-status").click();
+    cy.contains("Untested");
+    cy.contains("Passed");
+    cy.contains("Failed");
+    cy.contains("Blocked");
+  });
+
+  it("Has a Submit button", () => {
+    cy.get("#new-test-case-submit-btn");
+  });
+});
