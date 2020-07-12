@@ -10,24 +10,7 @@ import {
   Button,
 } from "@material-ui/core";
 
-const statuses = [
-  {
-    value: "Untested",
-    label: "Untested",
-  },
-  {
-    value: "Passed",
-    label: "Passed",
-  },
-  {
-    value: "Failed",
-    label: "Failed",
-  },
-  {
-    value: "Blocked",
-    label: "Blocked",
-  },
-];
+import { STATUSES } from "./Constants"
 
 const styles = withStyles((theme) => ({
   layout: {
@@ -196,7 +179,7 @@ class TestCaseForm extends React.Component {
                   onChange={this.handleChange}
                   fullWidth
                 >
-                  {statuses.map((option) => (
+                  {STATUSES.map((option) => (
                     <MenuItem key={option.value} value={option.value}>
                       {option.label}
                     </MenuItem>

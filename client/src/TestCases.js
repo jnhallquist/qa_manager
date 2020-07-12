@@ -47,7 +47,8 @@ class TestCases extends React.Component {
 
     this.state = {
       test_cases: [],
-      dialog_open: false
+      dialog_open: false,
+      dataIndex: null
     };
   }
 
@@ -58,8 +59,11 @@ class TestCases extends React.Component {
     });
   }
 
-  handleClickOpen = () => {
-    this.setState({dialog_open: true})
+  handleClick = (rowData, rowMeta) => {
+    this.setState({
+      dialog_open: true,
+      dataIndex: rowMeta.dataIndex
+    })
   };
 
   handleClose = () => {
@@ -70,7 +74,7 @@ class TestCases extends React.Component {
     download: false,
     print: false,
     viewColumns: false,
-    onRowClick: this.handleClickOpen
+    onRowClick: this.handleClick,
   };
 
   render() {
@@ -84,7 +88,7 @@ class TestCases extends React.Component {
       />
 
       <Dialog open={this.state.dialog_open} onClose={this.handleClose} aria-labelledby="form-dialog-title">
-        <UpdateTestCase onClose={this.handleClose} />
+        <UpdateTestCase onClose={this.handleClose} testCase={this.state.test_cases[this.state.dataIndex]} />
       </Dialog>
       </div>
     );
