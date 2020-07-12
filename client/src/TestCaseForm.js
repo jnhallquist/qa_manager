@@ -69,6 +69,7 @@ class TestCaseForm extends React.Component {
     this.state = {
       form: {
         title: "",
+        description: "",
         preconditions: "",
         steps: "",
         expected_results: "",
@@ -114,6 +115,19 @@ class TestCaseForm extends React.Component {
                 label="Title"
                 variant="filled"
                 value={this.state.form.title}
+                onChange={this.handleChange}
+                fullWidth
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                id="new-test-case-description"
+                name="description"
+                label="Description"
+                variant="filled"
+                multiline
+                rows={4}
+                value={this.state.form.description}
                 onChange={this.handleChange}
                 fullWidth
               />
