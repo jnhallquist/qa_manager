@@ -1,5 +1,13 @@
 describe("Test Cases Data Table", () => {
   before(() => {
+    cy.server();
+
+    cy.fixture("test_cases.json")
+      .then((response) => response.data)
+      .as("test_casesJSON");
+
+    cy.route("GET", "**/test_cases", "@test_casesJSON");
+
     cy.visit("/test_cases");
   });
 
