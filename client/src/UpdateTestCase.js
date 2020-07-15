@@ -58,6 +58,12 @@ class UpdateTestCase extends React.Component {
     this.props.onClose();
   };
 
+  handleChange = (event) => {
+    const formState = Object.assign({}, this.state.form);
+    formState[event.target.name] = event.target.value;
+    this.setState({ form: formState });
+  };
+
   handleSubmit = (event) => {
     event.preventDefault();
 
