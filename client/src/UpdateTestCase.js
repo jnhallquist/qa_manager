@@ -68,7 +68,10 @@ class UpdateTestCase extends React.Component {
     event.preventDefault();
 
     axios
-      .put(`http://localhost:3001/test_cases/${this.state.form.test_case_id}`, this.state.form)
+      .put(
+        `http://localhost:3001/test_cases/${this.state.form.test_case_id}`,
+        this.state.form
+      )
       .then(function (response) {
         console.log(response);
       })
