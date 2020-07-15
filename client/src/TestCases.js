@@ -87,7 +87,7 @@ class TestCases extends React.Component {
         options={this.options}
       />
 
-      <Dialog open={this.state.dialog_open} onClose={this.handleClose} aria-labelledby="form-dialog-title">
+      <Dialog fullScreen open={this.state.dialog_open} onClose={this.handleClose} fullWidth={true} aria-labelledby="form-dialog-title">
         <UpdateTestCase onClose={this.handleClose} testCase={this.state.test_cases[this.state.dataIndex]} />
       </Dialog>
       </div>
