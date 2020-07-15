@@ -68,7 +68,7 @@ class UpdateTestCase extends React.Component {
     event.preventDefault();
 
     axios
-      .post(`http://localhost:3001/test_cases/${this.state.form.test_case_id}`, this.state.form)
+      .put(`http://localhost:3001/test_cases/${this.state.form.test_case_id}`, this.state.form)
       .then(function (response) {
         console.log(response);
       })
@@ -95,8 +95,8 @@ class UpdateTestCase extends React.Component {
             <Typography variant="h6" className={classes.title}>
               Update Test Case
             </Typography>
-            <Button autoFocus color="inherit">
-              save
+            <Button autoFocus color="inherit" onClick={this.handleSubmit}>
+              Save
             </Button>
           </Toolbar>
         </AppBar>
