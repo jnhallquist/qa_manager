@@ -17,7 +17,16 @@ import { STATUSES } from "./Constants";
 
 const styles = withStyles((theme) => ({
   dialogContent: {
-    padding: "8px 10%",
+    width: "auto",
+    marginLeft: theme.spacing(2),
+    marginRight: theme.spacing(2),
+    [theme.breakpoints.up(600 + theme.spacing(2) * 2)]: {
+      width: 800,
+      marginLeft: "auto",
+      marginRight: "auto",
+      marginBottom: 100
+    },
+    overflow: "hidden",
   },
   title: {
     flex: 1
