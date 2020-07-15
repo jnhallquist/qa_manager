@@ -1,4 +1,6 @@
 import React from "react";
+import axios from "axios";
+
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import Dialog from "@material-ui/core/Dialog";
@@ -7,11 +9,11 @@ import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import { withStyles, Grid, MenuItem } from "@material-ui/core";
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import IconButton from '@material-ui/core/IconButton';
-import Typography from '@material-ui/core/Typography';
-import CloseIcon from '@material-ui/icons/Close';
+import AppBar from "@material-ui/core/AppBar";
+import Toolbar from "@material-ui/core/Toolbar";
+import IconButton from "@material-ui/core/IconButton";
+import Typography from "@material-ui/core/Typography";
+import CloseIcon from "@material-ui/icons/Close";
 
 import { STATUSES } from "./Constants";
 
@@ -24,12 +26,12 @@ const styles = withStyles((theme) => ({
       width: 800,
       marginLeft: "auto",
       marginRight: "auto",
-      marginBottom: 100
+      marginBottom: 100,
     },
     overflow: "hidden",
   },
   title: {
-    flex: 1
+    flex: 1,
   },
 }));
 
@@ -55,24 +57,42 @@ class UpdateTestCase extends React.Component {
     this.props.onClose();
   };
 
+  handleSubmit = (event) => {
+    event.preventDefault();
+
+    axios
+      .post(`http://localhost:3001/test_cases/${this.state.form.test_case_id}`, this.state.form)
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
+
   render() {
     const { classes } = this.props;
 
     return (
       <div>
-      <AppBar>
-        <Toolbar>
-          <IconButton edge="start" color="inherit" onClick={this.handleClose} aria-label="close">
-            <CloseIcon />
-          </IconButton>
-          <Typography variant="h6" className={classes.title}>
-            Update Test Case
-          </Typography>
-          <Button autoFocus color="inherit">
-            save
-          </Button>
-        </Toolbar>
-      </AppBar>
+        <AppBar>
+          <Toolbar>
+            <IconButton
+              edge="start"
+              color="inherit"
+              onClick={this.handleClose}
+              aria-label="close"
+            >
+              <CloseIcon />
+            </IconButton>
+            <Typography variant="h6" className={classes.title}>
+              Update Test Case
+            </Typography>
+            <Button autoFocus color="inherit">
+              save
+            </Button>
+          </Toolbar>
+        </AppBar>
         <DialogContent className={classes.dialogContent}>
           <Grid container spacing={3} alignContent="center">
             <Grid item xs={12}>
