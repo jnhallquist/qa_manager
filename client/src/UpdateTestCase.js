@@ -26,6 +26,7 @@ const styles = withStyles((theme) => ({
       width: 800,
       marginLeft: "auto",
       marginRight: "auto",
+      marginTop: 100,
       marginBottom: 100,
     },
     overflow: "hidden",
