@@ -84,6 +84,7 @@ class UpdateTestCase extends React.Component {
         <AppBar>
           <Toolbar>
             <IconButton
+              id="close-dialog-button"
               edge="start"
               color="inherit"
               onClick={this.handleClose}
@@ -103,7 +104,7 @@ class UpdateTestCase extends React.Component {
           <Grid container spacing={3} alignContent="center">
             <Grid item xs={12}>
               <TextField
-                id="new-test-case-title"
+                id="test-case-title"
                 name="title"
                 label="Title"
                 variant="filled"
@@ -114,7 +115,7 @@ class UpdateTestCase extends React.Component {
             </Grid>
             <Grid item xs={12}>
               <TextField
-                id="new-test-case-description"
+                id="test-case-description"
                 name="description"
                 label="Description"
                 variant="filled"
@@ -128,7 +129,7 @@ class UpdateTestCase extends React.Component {
             </Grid>
             <Grid item xs={12}>
               <TextField
-                id="new-test-case-preconditions"
+                id="test-case-preconditions"
                 name="preconditions"
                 label="Preconditions"
                 variant="filled"
@@ -141,7 +142,7 @@ class UpdateTestCase extends React.Component {
             </Grid>
             <Grid item xs={12}>
               <TextField
-                id="new-test-case-steps"
+                id="test-case-steps"
                 name="steps"
                 label="Steps"
                 variant="filled"
@@ -154,7 +155,7 @@ class UpdateTestCase extends React.Component {
             </Grid>
             <Grid item xs={12}>
               <TextField
-                id="new-test-case-expected-results"
+                id="test-case-expected-results"
                 name="expected_results"
                 label="Expected Results"
                 variant="filled"
@@ -167,7 +168,7 @@ class UpdateTestCase extends React.Component {
             </Grid>
             <Grid item xs={12}>
               <TextField
-                id="new-test-case-postconditions"
+                id="test-case-postconditions"
                 name="postconditions"
                 label="Postconditions"
                 variant="filled"
@@ -181,7 +182,7 @@ class UpdateTestCase extends React.Component {
             <Grid item xs={12}>
               <Grid item xs={6}>
                 <TextField
-                  id="new-test-case-status"
+                  id="test-case-status"
                   name="status"
                   select
                   label="Status"
