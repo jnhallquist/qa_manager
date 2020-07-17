@@ -10,7 +10,7 @@ describe("Update Test Case Dialog", () => {
 
     cy.visit("/test_cases");
 
-    cy.get('#MUIDataTableBodyRow-0').click();
+    cy.get("#MUIDataTableBodyRow-0").click();
   });
 
   it("Has title text Update Test Case", () => {
@@ -58,7 +58,7 @@ describe("Update Test Case Dialog", () => {
   });
 
   it("Closes dialog when close button clicked", () => {
-    cy.get("#close-dialog-button").click({force: true});
+    cy.get("#close-dialog-button").click({ force: true });
     cy.get("h6").contains("Update Test Case").should("not.exist");
   });
 });

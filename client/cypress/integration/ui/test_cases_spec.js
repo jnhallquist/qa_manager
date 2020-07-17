@@ -35,7 +35,7 @@ describe("Test Cases Data Table", () => {
   });
 
   it("Opens update test case dialog when table row is clicked on", () => {
-    cy.get('#MUIDataTableBodyRow-0').click();
+    cy.get("#MUIDataTableBodyRow-0").click();
     cy.get("h6").contains("Update Test Case");
   });
 });
