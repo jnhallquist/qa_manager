@@ -1,40 +1,34 @@
 import React from "react";
+import Dialog from "@material-ui/core/Dialog";
 import MUIDataTable from "mui-datatables";
 
 import axios from "axios";
 
-import EditIcon from "@material-ui/icons/Edit";
-import DeleteIcon from "@material-ui/icons/Delete";
+import UpdateTestCase from "./UpdateTestCase";
 
 const columns = [
   {
     name: "title",
     label: "Title",
     options: {
-      filter: false,
-    },
+      filter: false
+    }
   },
   {
     name: "description",
     label: "Description",
     options: {
-      filter: false,
-    },
+      filter: false
+    }
   },
   {
     name: "status",
     label: "Status",
     options: {
-      filter: true,
-    },
-  },
+      filter: true
+    }
+  }
 ];
-
-const options = {
-  download: false,
-  print: false,
-  viewColumns: false,
-};
 
 class TestCases extends React.Component {
   constructor() {
@@ -42,6 +36,8 @@ class TestCases extends React.Component {
 
     this.state = {
       test_cases: [],
+      dialog_open: false,
+      dataIndex: null
     };
   }
 
@@ -52,14 +48,47 @@ class TestCases extends React.Component {
     });
   }
 
+  handleClick = (rowData, rowMeta) => {
+    this.setState({
+      dialog_open: true,
+      dataIndex: rowMeta.dataIndex
+    });
+  };
+
+  handleClose = () => {
+    this.setState({ dialog_open: false });
+  };
+
+  options = {
+    download: false,
+    print: false,
+    viewColumns: false,
+    onRowClick: this.handleClick
+  };
+
   render() {
     return (
-      <MUIDataTable
-        title={"All Test Cases"}
-        data={this.state.test_cases}
-        columns={columns}
-        options={options}
-      />
+      <div>
+        <MUIDataTable
+          title={"All Test Cases"}
+          data={this.state.test_cases}
+          columns={columns}
+          options={this.options}
+        />
+
+        <Dialog
+          fullScreen
+          open={this.state.dialog_open}
+          onClose={this.handleClose}
+          fullWidth={true}
+          aria-labelledby="form-dialog-title"
+        >
+          <UpdateTestCase
+            onClose={this.handleClose}
+            testCase={this.state.test_cases[this.state.dataIndex]}
+          />
+        </Dialog>
+      </div>
     );
   }
 }

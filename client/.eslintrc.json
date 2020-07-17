@@ -1,0 +1,39 @@
+{
+    "env": {
+        "browser": true,
+        "es2020": true,
+        "es2017": true
+    },
+    "extends": [
+        "airbnb",
+        "plugin:react/recommended",
+        "plugin:cypress/recommended",
+        "prettier",
+        "prettier/react"
+    ],
+    "parserOptions": {
+        "ecmaFeatures": {
+            "jsx": true
+        },
+        "ecmaVersion": 11,
+        "sourceType": "module"
+    },
+    "plugins": [
+        "react"
+    ],
+    "rules": {
+      "react/jsx-closing-bracket-location": 0,
+      "react/jsx-closing-tag-location": 0,
+      "react/jsx-curly-newline": 0,
+      "react/jsx-curly-spacing": 0,
+      "react/jsx-equals-spacing": 0,
+      "react/jsx-first-prop-new-line": 0,
+      "react/jsx-indent": 0,
+      "react/jsx-indent-props": 0,
+      "react/jsx-max-props-per-line": 0,
+      "react/jsx-one-expression-per-line": 0,
+      "react/jsx-props-no-multi-spaces": 0,
+      "react/jsx-tag-spacing": 0,
+      "react/jsx-wrap-multilines": 0
+    }
+}

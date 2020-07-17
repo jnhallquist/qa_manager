@@ -1,66 +1,58 @@
 import React from "react";
 import axios from "axios";
 
-import {
-  withStyles,
-  Paper,
-  Grid,
-  TextField,
-  MenuItem,
-  Button
-} from "@material-ui/core";
+import Button from "@material-ui/core/Button";
+import TextField from "@material-ui/core/TextField";
+import DialogContent from "@material-ui/core/DialogContent";
+import { withStyles, Grid, MenuItem } from "@material-ui/core";
+import AppBar from "@material-ui/core/AppBar";
+import Toolbar from "@material-ui/core/Toolbar";
+import IconButton from "@material-ui/core/IconButton";
+import Typography from "@material-ui/core/Typography";
+import CloseIcon from "@material-ui/icons/Close";
 
 import { STATUSES } from "./Constants";
 
 const styles = withStyles((theme) => ({
-  layout: {
+  dialogContent: {
     width: "auto",
     marginLeft: theme.spacing(2),
     marginRight: theme.spacing(2),
     [theme.breakpoints.up(600 + theme.spacing(2) * 2)]: {
-      width: 600,
+      width: 800,
       marginLeft: "auto",
-      marginRight: "auto"
-    }
+      marginRight: "auto",
+      marginTop: 100,
+      marginBottom: 100
+    },
+    overflow: "hidden"
   },
-  paper: {
-    marginTop: theme.spacing(3),
-    marginBottom: theme.spacing(3),
-    padding: theme.spacing(2),
-    [theme.breakpoints.up(600 + theme.spacing(3) * 2)]: {
-      marginTop: theme.spacing(6),
-      marginBottom: theme.spacing(6),
-      padding: theme.spacing(3)
-    }
-  },
-  button: {
-    marginTop: theme.spacing(3),
-    marginLeft: theme.spacing(1)
-  },
-  contentRight: {
-    textAlign: "right"
-  },
-  contentCenter: {
-    textAlign: "center"
+  title: {
+    flex: 1
   }
 }));
 
-class TestCaseForm extends React.Component {
-  constructor() {
-    super();
+class UpdateTestCase extends React.Component {
+  constructor(props) {
+    super(props);
 
     this.state = {
       form: {
-        title: "",
-        description: "",
-        preconditions: "",
-        steps: "",
-        expected_results: "",
-        postconditions: "",
-        status: ""
+        test_case_id: props.testCase.id,
+        title: props.testCase.title,
+        description: props.testCase.description,
+        preconditions: props.testCase.preconditions,
+        steps: props.testCase.steps,
+        expected_results: props.testCase.expected_results,
+        postconditions: props.testCase.postconditions,
+        status: props.testCase.status
       }
     };
   }
+
+  handleClose = () => {
+    this.props.onClose();
+  };
 
   handleChange = (event) => {
     const formState = Object.assign({}, this.state.form);
@@ -72,7 +64,10 @@ class TestCaseForm extends React.Component {
     event.preventDefault();
 
     axios
-      .post("http://localhost:3001/test_cases", this.state.form)
+      .put(
+        `http://localhost:3001/test_cases/${this.state.form.test_case_id}`,
+        this.state.form
+      )
       .then(function (response) {
         console.log(response);
       })
@@ -85,15 +80,31 @@ class TestCaseForm extends React.Component {
     const { classes } = this.props;
 
     return (
-      <div className={classes.layout}>
-        <Paper className={classes.paper}>
+      <div>
+        <AppBar>
+          <Toolbar>
+            <IconButton
+              id="close-dialog-button"
+              edge="start"
+              color="inherit"
+              onClick={this.handleClose}
+              aria-label="close"
+            >
+              <CloseIcon />
+            </IconButton>
+            <Typography variant="h6" className={classes.title}>
+              Update Test Case
+            </Typography>
+            <Button autoFocus color="inherit" onClick={this.handleSubmit}>
+              Save
+            </Button>
+          </Toolbar>
+        </AppBar>
+        <DialogContent className={classes.dialogContent}>
           <Grid container spacing={3} alignContent="center">
-            <Grid item xs={12} className={classes.contentCenter}>
-              <h3 id="new-test-case-form-header-text">New Test Case</h3>
-            </Grid>
             <Grid item xs={12}>
               <TextField
-                id="new-test-case-title"
+                id="test-case-title"
                 name="title"
                 label="Title"
                 variant="filled"
@@ -104,7 +115,7 @@ class TestCaseForm extends React.Component {
             </Grid>
             <Grid item xs={12}>
               <TextField
-                id="new-test-case-description"
+                id="test-case-description"
                 name="description"
                 label="Description"
                 variant="filled"
@@ -118,7 +129,7 @@ class TestCaseForm extends React.Component {
             </Grid>
             <Grid item xs={12}>
               <TextField
-                id="new-test-case-preconditions"
+                id="test-case-preconditions"
                 name="preconditions"
                 label="Preconditions"
                 variant="filled"
@@ -131,7 +142,7 @@ class TestCaseForm extends React.Component {
             </Grid>
             <Grid item xs={12}>
               <TextField
-                id="new-test-case-steps"
+                id="test-case-steps"
                 name="steps"
                 label="Steps"
                 variant="filled"
@@ -144,7 +155,7 @@ class TestCaseForm extends React.Component {
             </Grid>
             <Grid item xs={12}>
               <TextField
-                id="new-test-case-expected-results"
+                id="test-case-expected-results"
                 name="expected_results"
                 label="Expected Results"
                 variant="filled"
@@ -157,7 +168,7 @@ class TestCaseForm extends React.Component {
             </Grid>
             <Grid item xs={12}>
               <TextField
-                id="new-test-case-postconditions"
+                id="test-case-postconditions"
                 name="postconditions"
                 label="Postconditions"
                 variant="filled"
@@ -171,7 +182,7 @@ class TestCaseForm extends React.Component {
             <Grid item xs={12}>
               <Grid item xs={6}>
                 <TextField
-                  id="new-test-case-status"
+                  id="test-case-status"
                   name="status"
                   select
                   label="Status"
@@ -187,21 +198,11 @@ class TestCaseForm extends React.Component {
                 </TextField>
               </Grid>
             </Grid>
-            <Grid item xs={12} className={classes.contentRight}>
-              <Button
-                id="new-test-case-submit-btn"
-                className={classes.button}
-                variant="contained"
-                onClick={this.handleSubmit}
-              >
-                Submit
-              </Button>
-            </Grid>
           </Grid>
-        </Paper>
+        </DialogContent>
       </div>
     );
   }
 }
 
-export default styles(TestCaseForm);
+export default styles(UpdateTestCase);
