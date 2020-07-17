@@ -1,45 +1,34 @@
 import React from "react";
-import Dialog from '@material-ui/core/Dialog';
+import Dialog from "@material-ui/core/Dialog";
 import MUIDataTable from "mui-datatables";
 
 import axios from "axios";
 
 import UpdateTestCase from "./UpdateTestCase";
 
-import EditIcon from "@material-ui/icons/Edit";
-import DeleteIcon from "@material-ui/icons/Delete";
-
-// const [open, setOpen] = React.useState(false);
-
 const columns = [
   {
     name: "title",
     label: "Title",
     options: {
-      filter: false,
-    },
+      filter: false
+    }
   },
   {
     name: "description",
     label: "Description",
     options: {
-      filter: false,
-    },
+      filter: false
+    }
   },
   {
     name: "status",
     label: "Status",
     options: {
-      filter: true,
-    },
-  },
+      filter: true
+    }
+  }
 ];
-
-const options = {
-  download: false,
-  print: false,
-  viewColumns: false
-};
 
 class TestCases extends React.Component {
   constructor() {
@@ -63,33 +52,42 @@ class TestCases extends React.Component {
     this.setState({
       dialog_open: true,
       dataIndex: rowMeta.dataIndex
-    })
+    });
   };
 
   handleClose = () => {
-    this.setState({dialog_open: false})
+    this.setState({ dialog_open: false });
   };
 
   options = {
     download: false,
     print: false,
     viewColumns: false,
-    onRowClick: this.handleClick,
+    onRowClick: this.handleClick
   };
 
   render() {
     return (
       <div>
-      <MUIDataTable
-        title={"All Test Cases"}
-        data={this.state.test_cases}
-        columns={columns}
-        options={this.options}
-      />
+        <MUIDataTable
+          title={"All Test Cases"}
+          data={this.state.test_cases}
+          columns={columns}
+          options={this.options}
+        />
 
-      <Dialog fullScreen open={this.state.dialog_open} onClose={this.handleClose} fullWidth={true} aria-labelledby="form-dialog-title">
-        <UpdateTestCase onClose={this.handleClose} testCase={this.state.test_cases[this.state.dataIndex]} />
-      </Dialog>
+        <Dialog
+          fullScreen
+          open={this.state.dialog_open}
+          onClose={this.handleClose}
+          fullWidth={true}
+          aria-labelledby="form-dialog-title"
+        >
+          <UpdateTestCase
+            onClose={this.handleClose}
+            testCase={this.state.test_cases[this.state.dataIndex]}
+          />
+        </Dialog>
       </div>
     );
   }

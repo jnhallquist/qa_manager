@@ -3,11 +3,7 @@ import axios from "axios";
 
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
-import Dialog from "@material-ui/core/Dialog";
-import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
-import DialogContentText from "@material-ui/core/DialogContentText";
-import DialogTitle from "@material-ui/core/DialogTitle";
 import { withStyles, Grid, MenuItem } from "@material-ui/core";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
@@ -27,13 +23,13 @@ const styles = withStyles((theme) => ({
       marginLeft: "auto",
       marginRight: "auto",
       marginTop: 100,
-      marginBottom: 100,
+      marginBottom: 100
     },
-    overflow: "hidden",
+    overflow: "hidden"
   },
   title: {
-    flex: 1,
-  },
+    flex: 1
+  }
 }));
 
 class UpdateTestCase extends React.Component {
@@ -49,8 +45,8 @@ class UpdateTestCase extends React.Component {
         steps: props.testCase.steps,
         expected_results: props.testCase.expected_results,
         postconditions: props.testCase.postconditions,
-        status: props.testCase.status,
-      },
+        status: props.testCase.status
+      }
     };
   }
 

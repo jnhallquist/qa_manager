@@ -7,10 +7,10 @@ import {
   Grid,
   TextField,
   MenuItem,
-  Button,
+  Button
 } from "@material-ui/core";
 
-import { STATUSES } from "./Constants"
+import { STATUSES } from "./Constants";
 
 const styles = withStyles((theme) => ({
   layout: {
@@ -20,8 +20,8 @@ const styles = withStyles((theme) => ({
     [theme.breakpoints.up(600 + theme.spacing(2) * 2)]: {
       width: 600,
       marginLeft: "auto",
-      marginRight: "auto",
-    },
+      marginRight: "auto"
+    }
   },
   paper: {
     marginTop: theme.spacing(3),
@@ -30,19 +30,19 @@ const styles = withStyles((theme) => ({
     [theme.breakpoints.up(600 + theme.spacing(3) * 2)]: {
       marginTop: theme.spacing(6),
       marginBottom: theme.spacing(6),
-      padding: theme.spacing(3),
-    },
+      padding: theme.spacing(3)
+    }
   },
   button: {
     marginTop: theme.spacing(3),
-    marginLeft: theme.spacing(1),
+    marginLeft: theme.spacing(1)
   },
   contentRight: {
-    textAlign: "right",
+    textAlign: "right"
   },
   contentCenter: {
-    textAlign: "center",
-  },
+    textAlign: "center"
+  }
 }));
 
 class TestCaseForm extends React.Component {
@@ -57,8 +57,8 @@ class TestCaseForm extends React.Component {
         steps: "",
         expected_results: "",
         postconditions: "",
-        status: "",
-      },
+        status: ""
+      }
     };
   }
 

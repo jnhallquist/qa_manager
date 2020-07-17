@@ -1,21 +1,24 @@
 import React from "react";
-import logo from "./logo.svg";
 import "./App.css";
 
-import { ThemeProvider, createMuiTheme } from "@material-ui/core/styles";
+import {
+  ThemeProvider,
+  createMuiTheme,
+  makeStyles
+} from "@material-ui/core/styles";
 import { blue } from "@material-ui/core/colors";
 
 import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link as RouterLink,
+  Link as RouterLink
 } from "react-router-dom";
 
 import Link from "@material-ui/core/Link";
 
 import clsx from "clsx";
-import { makeStyles, useTheme } from "@material-ui/core/styles";
+
 import Drawer from "@material-ui/core/Drawer";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import AppBar from "@material-ui/core/AppBar";
@@ -33,7 +36,7 @@ import MenuIcon from "@material-ui/icons/Menu";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 import CreateIcon from "@material-ui/icons/Create";
-import ListIcon from '@material-ui/icons/List';
+import ListIcon from "@material-ui/icons/List";
 import HomeIcon from "@material-ui/icons/Home";
 
 import TestCaseForm from "./TestCaseForm";
@@ -43,34 +46,34 @@ const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    display: "flex",
+    display: "flex"
   },
   appBar: {
     transition: theme.transitions.create(["margin", "width"], {
       easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
+      duration: theme.transitions.duration.leavingScreen
+    })
   },
   appBarShift: {
     width: `calc(100% - ${drawerWidth}px)`,
     marginLeft: drawerWidth,
     transition: theme.transitions.create(["margin", "width"], {
       easing: theme.transitions.easing.easeOut,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
+      duration: theme.transitions.duration.enteringScreen
+    })
   },
   menuButton: {
-    marginRight: theme.spacing(2),
+    marginRight: theme.spacing(2)
   },
   hide: {
-    display: "none",
+    display: "none"
   },
   drawer: {
     width: drawerWidth,
-    flexShrink: 0,
+    flexShrink: 0
   },
   drawerPaper: {
-    width: drawerWidth,
+    width: drawerWidth
   },
   drawerHeader: {
     display: "flex",
@@ -78,27 +81,27 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(0, 1),
     // necessary for content to be below app bar
     ...theme.mixins.toolbar,
-    justifyContent: "flex-end",
+    justifyContent: "flex-end"
   },
   content: {
     flexGrow: 1,
     padding: theme.spacing(3),
     transition: theme.transitions.create("margin", {
       easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
+      duration: theme.transitions.duration.leavingScreen
     }),
-    marginLeft: -drawerWidth,
+    marginLeft: -drawerWidth
   },
   contentShift: {
     transition: theme.transitions.create("margin", {
       easing: theme.transitions.easing.easeOut,
-      duration: theme.transitions.duration.enteringScreen,
+      duration: theme.transitions.duration.enteringScreen
     }),
-    marginLeft: 0,
+    marginLeft: 0
   },
   appBarButtons: {
-    marginLeft: "auto",
-  },
+    marginLeft: "auto"
+  }
 }));
 
 function App() {
@@ -108,9 +111,9 @@ function App() {
       primary: {
         light: blue[100],
         main: blue[200],
-        dark: blue[500],
-      },
-    },
+        dark: blue[500]
+      }
+    }
   });
 
   const classes = useStyles();
@@ -132,7 +135,7 @@ function App() {
           <AppBar
             position="fixed"
             className={clsx(classes.appBar, {
-              [classes.appBarShift]: open,
+              [classes.appBarShift]: open
             })}
           >
             <Toolbar>
@@ -161,7 +164,7 @@ function App() {
             anchor="left"
             open={open}
             classes={{
-              paper: classes.drawerPaper,
+              paper: classes.drawerPaper
             }}
           >
             <div className={classes.drawerHeader}>
@@ -175,11 +178,7 @@ function App() {
             </div>
             <Divider />
             <List>
-              <Link
-                component={RouterLink}
-                to="/new_test_case"
-                underline={"none"}
-              >
+              <Link component={RouterLink} to="/new_test_case" underline="none">
                 <ListItem button>
                   <ListItemIcon>
                     <CreateIcon />
@@ -187,11 +186,7 @@ function App() {
                   <ListItemText primary="Create Test Case" />
                 </ListItem>
               </Link>
-              <Link
-                component={RouterLink}
-                to="/test_cases"
-                underline={"none"}
-              >
+              <Link component={RouterLink} to="/test_cases" underline="none">
                 <ListItem button>
                   <ListItemIcon>
                     <ListIcon />
@@ -203,7 +198,7 @@ function App() {
           </Drawer>
           <main
             className={clsx(classes.content, {
-              [classes.contentShift]: open,
+              [classes.contentShift]: open
             })}
           >
             <div className={classes.drawerHeader} />
